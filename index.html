@@ -1,1 +1,444 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AS-SV - Agua y Seguridad Alimentaria</title>
+    <style>
+        /* ESTILOS GENERALES - ACCESIBLES PARA PERSONAS MAYORES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 24px; /* Texto grande para mejor legibilidad */
+            line-height: 1.6;
+            background-color: #f5f5f5;
+            color: #000000;
+            padding: 10px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #2c5aa0;
+        }
+        
+        h1 {
+            font-size: 36px;
+            color: #2c5aa0;
+            margin-bottom: 10px;
+        }
+        
+        .logo {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        
+        /* BOTONES PRINCIPALES - GRANDES Y CON ALTO CONTRASTE */
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .main-btn {
+            display: block;
+            padding: 25px 20px;
+            font-size: 28px;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .main-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+        
+        .btn-water {
+            background-color: #2c5aa0;
+            color: white;
+        }
+        
+        .btn-food {
+            background-color: #2e7d32;
+            color: white;
+        }
+        
+        .btn-contact {
+            background-color: #c62828;
+            color: white;
+        }
+        
+        .btn-audio {
+            background-color: #ffd600;
+            color: #000000;
+            font-size: 22px;
+            padding: 15px;
+        }
+        
+        /* FORMULARIOS - CAMPOS GRANDES Y CLAROS */
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        select, input[type="text"], input[type="tel"] {
+            width: 100%;
+            padding: 20px;
+            font-size: 24px;
+            border: 2px solid #cccccc;
+            border-radius: 8px;
+            background-color: #ffffff;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .checkbox-item input {
+            width: 30px;
+            height: 30px;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            padding: 15px 25px;
+            background-color: #757575;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+        
+        .submit-btn {
+            background-color: #2e7d32;
+            color: white;
+            padding: 25px;
+            font-size: 28px;
+            border: none;
+            border-radius: 12px;
+            width: 100%;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        
+        .contact-item {
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .contact-phone {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        
+        .contact-btn {
+            display: inline-block;
+            padding: 15px 20px;
+            background-color: #2e7d32;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        
+        .emergency-btn {
+            background-color: #c62828;
+        }
+        
+        /* PANTALLA DE CONFIRMACIÓN */
+        .confirmation {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .confirmation-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+        
+        .confirmation-details {
+            background-color: #e8f5e9;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- PANTALLA PRINCIPAL -->
+    <div class="container" id="main-screen">
+        <header>
+            <div class="logo">🚰🍚</div>
+            <h1>AS-SV</h1>
+            <p>Agua y Seguridad Alimentaria</p>
+        </header>
+        
+        <div class="btn-container">
+            <button class="main-btn btn-water" onclick="showScreen('water-screen')">
+                <span>🚰</span> REPORTAR PROBLEMA DE AGUA
+            </button>
+            
+            <button class="main-btn btn-food" onclick="showScreen('food-screen')">
+                <span>🍚</span> REPORTAR FALTA DE ALIMENTOS
+            </button>
+            
+            <button class="main-btn btn-contact" onclick="showScreen('contact-screen')">
+                <span>📞</span> CONTACTOS DE EMERGENCIA
+            </button>
+        </div>
+        
+        <button class="btn-audio main-btn" onclick="playAudioInstructions()">
+            <span>🎧</span> ESCUCHAR INSTRUCCIONES EN AUDIO
+        </button>
+    </div>
+    
+    <!-- PANTALLA DE REPORTE DE AGUA -->
+    <div class="container" id="water-screen" style="display: none;">
+        <a href="#" class="back-btn" onclick="showScreen('main-screen')">← Volver</a>
+        
+        <header>
+            <h1>🚰 REPORTAR PROBLEMA DE AGUA</h1>
+        </header>
+        
+        <form id="water-form">
+            <div class="form-group">
+                <label for="municipio">SELECCIONE SU MUNICIPIO:</label>
+                <select id="municipio" required>
+                    <option value="">-- Seleccione --</option>
+                    <option value="san-miguel">San Miguel</option>
+                    <option value="usulutan">Usulután</option>
+                    <option value="la-union">La Unión</option>
+                    <option value="san-salvador">San Salvador</option>
+                    <option value="santa-ana">Santa Ana</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>TIPO DE PROBLEMA:</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="radio" id="no-agua" name="problema" value="no-agua">
+                        <label for="no-agua">No llega el agua</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="radio" id="agua-turbia" name="problema" value="agua-turbia">
+                        <label for="agua-turbia">Agua turbia/sucia</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="radio" id="olor-agua" name="problema" value="olor-agua">
+                        <label for="olor-agua">Olor raro en el agua</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="radio" id="fuente-contaminada" name="problema" value="fuente-contaminada">
+                        <label for="fuente-contaminada">Fuente contaminada</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="telefono">📞 SU NÚMERO DE TELÉFONO (opcional):</label>
+                <input type="tel" id="telefono" placeholder="Ej: 7123-4567">
+            </div>
+            
+            <div class="form-group">
+                <label>🎤 O GRABAR MENSAJE DE VOZ:</label>
+                <button type="button" class="btn-audio main-btn" style="width: 100%;" onclick="recordAudio()">
+                    GRABAR AUDIO
+                </button>
+            </div>
+            
+            <button type="button" class="submit-btn" onclick="submitWaterReport()">
+                ENVIAR REPORTE
+            </button>
+        </form>
+    </div>
+    
+    <!-- PANTALLA DE CONTACTOS -->
+    <div class="container" id="contact-screen" style="display: none;">
+        <a href="#" class="back-btn" onclick="showScreen('main-screen')">← Volver</a>
+        
+        <header>
+            <h1>📞 CONTACTOS IMPORTANTES</h1>
+        </header>
+        
+        <div class="contact-item">
+            <h3>🚰 ANDA (Agua Potable):</h3>
+            <div class="contact-phone">Tel: 2527-7000</div>
+            <a href="tel:25277000" class="contact-btn">LLAMAR AHORA</a>
+        </div>
+        
+        <div class="contact-item">
+            <h3>🏥 Ministerio de Salud:</h3>
+            <div class="contact-phone">Tel: 2200-0111</div>
+            <a href="tel:22000111" class="contact-btn">LLAMAR AHORA</a>
+        </div>
+        
+        <div class="contact-item">
+            <h3>🍚 MAG (Agricultura):</h3>
+            <div class="contact-phone">Tel: 2209-9000</div>
+            <a href="tel:22099000" class="contact-btn">LLAMAR AHORA</a>
+        </div>
+        
+        <div class="contact-item">
+            <h3>🏛️ Alcaldía Municipal:</h3>
+            <div class="form-group">
+                <label for="municipio-contacto">Seleccione municipio para ver teléfono:</label>
+                <select id="municipio-contacto" onchange="showMunicipioPhone()">
+                    <option value="">-- Seleccione --</option>
+                    <option value="san-miguel">San Miguel - 2661-1000</option>
+                    <option value="usulutan">Usulután - 2662-0444</option>
+                    <option value="la-union">La Unión - 2634-1222</option>
+                </select>
+            </div>
+            <div id="municipio-phone" style="display: none;">
+                <div class="contact-phone" id="phone-display"></div>
+                <a href="#" class="contact-btn" id="phone-call">LLAMAR AHORA</a>
+            </div>
+        </div>
+        
+        <div class="contact-item">
+            <h3>🆘 Protección Civil:</h3>
+            <div class="contact-phone">Tel: 2281-0888</div>
+            <a href="tel:22810888" class="contact-btn emergency-btn">LLAMAR AHORA</a>
+        </div>
+    </div>
+    
+    <!-- PANTALLA DE CONFIRMACIÓN -->
+    <div class="container" id="confirmation-screen" style="display: none;">
+        <div class="confirmation">
+            <div class="confirmation-icon">✅</div>
+            <h1>¡REPORTE ENVIADO!</h1>
+            
+            <div class="confirmation-details">
+                <p>Su reporte ha sido recibido correctamente.</p>
+                <p><strong>Número de reporte: #00123</strong></p>
+                <p><strong>Fecha: 25/03/2024</strong></p>
+            </div>
+            
+            <p>📞 Si proporcionó su teléfono, recibirá una confirmación por SMS.</p>
+            
+            <div class="btn-container">
+                <button class="main-btn btn-water" onclick="showScreen('water-screen')">
+                    HACER OTRO REPORTE
+                </button>
+                
+                <button class="main-btn btn-contact" onclick="showScreen('main-screen')">
+                    VOLVER AL INICIO
+                </button>
+            </div>
+        </div>
+    </div>
 
+    <script>
+        // FUNCIONES BÁSICAS DE NAVEGACIÓN
+        function showScreen(screenId) {
+            // Ocultar todas las pantallas
+            document.getElementById('main-screen').style.display = 'none';
+            document.getElementById('water-screen').style.display = 'none';
+            document.getElementById('contact-screen').style.display = 'none';
+            document.getElementById('confirmation-screen').style.display = 'none';
+            
+            // Mostrar la pantalla solicitada
+            document.getElementById(screenId).style.display = 'block';
+            
+            // Scroll al inicio de la página
+            window.scrollTo(0, 0);
+        }
+        
+        function playAudioInstructions() {
+            // En una implementación real, aquí iría el código para reproducir audio
+            alert("Instrucciones de audio: Esta aplicación le permite reportar problemas de agua y alimentos. Use los botones grandes para navegar. Puede grabar un mensaje de voz si no puede escribir.");
+        }
+        
+        function recordAudio() {
+            // En una implementación real, aquí iría el código para grabar audio
+            alert("Función de grabación de audio activada. Hable claramente después del tono.");
+        }
+        
+        function submitWaterReport() {
+            // Validar formulario básico
+            const municipio = document.getElementById('municipio').value;
+            const problema = document.querySelector('input[name="problema"]:checked');
+            
+            if (!municipio) {
+                alert("Por favor, seleccione su municipio.");
+                return;
+            }
+            
+            if (!problema) {
+                alert("Por favor, seleccione el tipo de problema.");
+                return;
+            }
+            
+            // En una implementación real, aquí se enviarían los datos al servidor
+            // Por ahora, solo mostramos la pantalla de confirmación
+            showScreen('confirmation-screen');
+        }
+        
+        function showMunicipioPhone() {
+            const select = document.getElementById('municipio-contacto');
+            const phoneDisplay = document.getElementById('phone-display');
+            const phoneCall = document.getElementById('phone-call');
+            const phoneContainer = document.getElementById('municipio-phone');
+            
+            if (select.value) {
+                const selectedOption = select.options[select.selectedIndex];
+                const phoneNumber = selectedOption.text.split(' - ')[1];
+                phoneDisplay.textContent = `Tel: ${phoneNumber}`;
+                phoneCall.href = `tel:${phoneNumber.replace(/-/g, '')}`;
+                phoneContainer.style.display = 'block';
+            } else {
+                phoneContainer.style.display = 'none';
+            }
+        }
+        
+        // Inicializar mostrando la pantalla principal
+        window.onload = function() {
+            showScreen('main-screen');
+        };
+    </script>
+</body>
+</html>
